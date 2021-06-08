@@ -23,8 +23,7 @@ class RecentlyPlayedCell: UICollectionViewCell {
 //
     private let titleLabel: UILabel = {
         let label = UILabel()
-
-        label.font = UIFont(name: "MalayalamSangamMN-Bold", size: 15)
+        label.font = UIFont(name: "MalayalamSangamMN-Bold", size: 16)
         label.textAlignment = .center
         label.textColor = .black
         label.adjustsFontSizeToFitWidth = true
@@ -33,6 +32,7 @@ class RecentlyPlayedCell: UICollectionViewCell {
 
         return label
     }()
+ 
 
     
     override init(frame: CGRect) {
@@ -54,25 +54,21 @@ class RecentlyPlayedCell: UICollectionViewCell {
         thumbnailImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         thumbnailImageView.heightAnchor.constraint(equalToConstant: self.frame.width).isActive = true
         
-//        thumbnailImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor,width: 0, height:  self.frame.width)
+
 
         addSubview(titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor ).isActive = true
+        titleLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor,constant: 4.7 ).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
-//        titleLabel.anchor(top: thumbnailImageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
-      //        titleLabel.anchor(top: thumbnailImageView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
+      
 
     }
 
-    func setup<T>(item: T, cellType: RowCellType) {
-
-//        switch cellType {
-//            case .recentlyPlayed:
-        guard let song = item as? Song else {return}
+    func setup(song: Song) {
+//        guard let song = item as? Song else {return}
         thumbnailImageView.image = UIImage(named: song.thumbnailUrl)
         titleLabel.text = song.title
         

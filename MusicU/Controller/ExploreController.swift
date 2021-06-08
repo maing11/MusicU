@@ -105,9 +105,9 @@ extension ExploreController: UICollectionViewDataSource {
             cell.setup(cellType: .getInspired)
         case .popularArtists:
             cell.setup(cellType: .popularArtists)
-        case .genres:
-            cell.setup(cellType: .genres)
-
+//        case .genres:
+//            cell.setup(cellType: .genres)
+//
         }
         return cell
 
@@ -132,8 +132,8 @@ extension ExploreController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: width, height: 276 + padding)
         case .popularArtists:
             return CGSize(width: width, height: 180 + padding)
-        case .genres:
-            return CGSize(width: width, height: 110 + padding)
+//        case .genres:
+//            return CGSize(width: width, height: 110 + padding)
         }
 }
 }

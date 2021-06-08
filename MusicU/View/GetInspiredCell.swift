@@ -7,11 +7,9 @@
 
 import UIKit
 
-
 class GetInspiredCell: UICollectionViewCell {
     
         static let identifier = "GetInspiredIDCell"
-
 
         private let thumbnailImageView: UIImageView = {
             var image = UIImageView(image: UIImage(named: "Blue_MusicNote"))
@@ -21,12 +19,11 @@ class GetInspiredCell: UICollectionViewCell {
 
             return image
         }()
-    //        private let thumbnailImageView = MUThumbnailImageView(frame: .zero)
+//            private let thumbnailImageView = MUThumbnailImageView(frame: .zero)
 
         private let titleLabel: UILabel = {
             let label = UILabel()
-
-            label.font = UIFont(name: "MalayalamSangamMN-Bold", size: 15)
+            label.font = UIFont(name: "MalayalamSangamMN-Bold", size: 17)
             label.textAlignment = .center
             label.textColor = .black
             label.adjustsFontSizeToFitWidth = true
@@ -48,20 +45,29 @@ class GetInspiredCell: UICollectionViewCell {
 
 
         func configureUI() {
+            titleLabel.numberOfLines = 2
             addSubview(thumbnailImageView)
+            
+            addSubview(thumbnailImageView)
+            thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
+            thumbnailImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+            thumbnailImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+            thumbnailImageView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+            thumbnailImageView.heightAnchor.constraint(equalToConstant: self.frame.width).isActive = true
 
-            thumbnailImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor,width: 0, height:  self.frame.width)
+//            thumbnailImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor,width: 0, height:  self.frame.width)
             
             addSubview(titleLabel)
-            titleLabel.anchor(top: thumbnailImageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
-          //        titleLabel.anchor(top: thumbnailImageView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
-
+            titleLabel.translatesAutoresizingMaskIntoConstraints = false
+            titleLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor,constant: 8).isActive = true
+            titleLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+            titleLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+//            titleLabel.anchor(top: thumbnailImageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
+        
         }
 
-        func setup<T>(item: T, cellType: RowCellType) {
-
-            guard let song = item as? Song else {return}
-            thumbnailImageView.image = UIImage(named: song.thumbnailUrl)
-            titleLabel.text = song.title
-        }
+    func setup(album: Album) {
+        titleLabel.text = album.title
+        thumbnailImageView.image = UIImage(named: album.thumbnailUrl)
     }
+}

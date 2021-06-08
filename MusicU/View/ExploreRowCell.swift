@@ -30,15 +30,12 @@ class ExploreRowCell: UICollectionViewCell {
 
     private var recentlyPlayedSongs = [Song]()
     private var recommendedForYouSongs = [Song]()
-//    private var genres = [Song]()
-//    private var albums = [Song]()
-//    private var artists = [Song]()
-//    private var cellType: RowCellType!
-//    private var recommendedForYouSongs = [Song]()
-//    private var genres = [Genre]()
-//    private var albums = [Album]()
-//    private var artists = [Artist]()
+    private var albums = [Album]()
+    private var artists = [Artist]()
     private var cellType: RowCellType!
+    
+    //    private var cellType: RowCellType!
+    //    private var genres = [Genre]()
 
     
     override init(frame: CGRect) {
@@ -64,7 +61,7 @@ class ExploreRowCell: UICollectionViewCell {
     
     func setUpCollectioView() {
         collectionView = UICollectionView(frame: .zero, collectionViewLayout: createFlowLayout())
-        collectionView.backgroundColor = .green
+        collectionView.backgroundColor = .white
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -72,13 +69,13 @@ class ExploreRowCell: UICollectionViewCell {
         
     
         collectionView.register(RecentlyPlayedCell.self, forCellWithReuseIdentifier: RecentlyPlayedCell.identifier)
-//
+        
         collectionView.register(RecommendedCell.self, forCellWithReuseIdentifier: RecommendedCell.identifier)
-//
-//        collectionView.register(GetInspiredCell.self, forCellWithReuseIdentifier: GetInspiredCell.identifier)
-//
-//        collectionView.register(PopularArtistCell.self, forCellWithReuseIdentifier: PopularArtistCell.identifier)
-//
+
+        collectionView.register(GetInspiredCell.self, forCellWithReuseIdentifier: GetInspiredCell.identifier)
+
+        collectionView.register(PopularArtistCell.self, forCellWithReuseIdentifier: PopularArtistCell.identifier)
+
 //        collectionView.register(GenresCell.self, forCellWithReuseIdentifier: GenresCell.identifier)
 
 
@@ -93,22 +90,23 @@ class ExploreRowCell: UICollectionViewCell {
 
     
 
+  
+    
+    func fetchData() {
+        recentlyPlayedSongs = Song.fetchSongs()
+        recommendedForYouSongs = Song.fetchRecommendForYouSongs()
+        albums = Album.fetchAlbums()
+        artists = Artist.fetchAllArtist()
+
+      //        artists = Artist.fetchAllArtists()
+       //        genres = Genre.fetchGenres()
+    }
+    
     func setup(cellType: RowCellType) {
            self.cellType = cellType
            titleLabel.text = cellType.rawValue
        }
     
-    func fetchData() {
-        recentlyPlayedSongs = Song.fetchSongs()
-        recommendedForYouSongs = Song.fetchSongs()
-//        albums = Song.fetchSongs()
-//        artists = Song.fetchSongs()
-//        genres = Song.fetchSongs()
-//        recommendedForYouSongs = Song.fetchRecommendedForYouSongs()
-       //        albums = Album.fetchAlbums()
-       //        artists = Artist.fetchAllArtists()
-       //        genres = Genre.fetchGenres()
-    }
     
     private func configureUI() {
         addSubviews(titleLabel)
@@ -122,7 +120,7 @@ class ExploreRowCell: UICollectionViewCell {
 //
         addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor).isActive = true
+        collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,constant: 18).isActive = true
         collectionView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         collectionView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
@@ -160,11 +158,11 @@ extension ExploreRowCell: UICollectionViewDataSource {
             case .recentlyPlayed:
             return recentlyPlayedSongs.count
         case .recommendedForYou:
-            return recentlyPlayedSongs.count
+            return recommendedForYouSongs.count
         case .getInspired:
-            return recentlyPlayedSongs.count
+            return albums.count
         case .popularArtists:
-            return recentlyPlayedSongs.count
+            return artists.count
         case .genres:
             return recentlyPlayedSongs.count
         case .none:
@@ -218,28 +216,31 @@ extension ExploreRowCell: UICollectionViewDataSource {
             switch cellType {
             case .recentlyPlayed:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentlyPlayedCell.identifier, for: indexPath) as! RecentlyPlayedCell
-                cell.setup(item: recentlyPlayedSongs[indexPath.item], cellType: .recentlyPlayed)
+                cell.setup(song:recentlyPlayedSongs[indexPath.item])
                 return cell
+                
             case .recommendedForYou:
-              
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentlyPlayedCell.identifier, for: indexPath) as! RecentlyPlayedCell
-                cell.setup(item: recentlyPlayedSongs[indexPath.item], cellType: .recentlyPlayed)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecommendedCell.identifier, for: indexPath) as! RecommendedCell
+                cell.setup(song: recommendedForYouSongs[indexPath.item])
                 return cell
+                
             case .getInspired:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentlyPlayedCell.identifier, for: indexPath) as! RecentlyPlayedCell
-                cell.setup(item: recentlyPlayedSongs[indexPath.item], cellType: .recentlyPlayed)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GetInspiredCell.identifier, for: indexPath) as! GetInspiredCell
+                cell.setup(album: albums[indexPath.item])
                 return cell
+                
             case .popularArtists:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentlyPlayedCell.identifier, for: indexPath) as! RecentlyPlayedCell
-                cell.setup(item: recentlyPlayedSongs[indexPath.item], cellType: .recentlyPlayed)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularArtistCell.identifier, for: indexPath) as! PopularArtistCell
+                cell.setup(artist: artists[indexPath.item])
                 return cell
+                
             case .genres:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentlyPlayedCell.identifier, for: indexPath) as! RecentlyPlayedCell
-                cell.setup(item: recentlyPlayedSongs[indexPath.item], cellType: .recentlyPlayed)
+                cell.setup(song:recentlyPlayedSongs[indexPath.item])
                 return cell
             case .none:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RecentlyPlayedCell.identifier, for: indexPath) as! RecentlyPlayedCell
-                cell.setup(item: recentlyPlayedSongs[indexPath.item], cellType: .recentlyPlayed)
+                cell.setup(song:recentlyPlayedSongs[indexPath.item])
                 return cell
             }
         }

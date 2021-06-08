@@ -10,17 +10,15 @@ import Foundation
 struct  Artist {
     let name: String
     let thumbnailUrl: String
-    let largeThumbnailUrl: String
+//    let largeThumbnailUrl: String
     
     
     static func fetchAllArtist() -> [Artist] {
-        return [
-            Artist(name: "Wiz Khalifa", thumbnailUrl: Temporary.artist1, largeThumbnailUrl: Temporary.artistLarge1),
-            Artist(name: "Ed Sheeran", thumbnailUrl: Temporary.artist2, largeThumbnailUrl:Temporary.artistLarge1),
-            Artist(name: "Bruno Mars", thumbnailUrl: Temporary.artist3, largeThumbnailUrl:Temporary.artistLarge1),
-            Artist(name: "Pink Sweats", thumbnailUrl: Temporary.artist4, largeThumbnailUrl: Temporary.artistLarge1),
-            Artist(name: "Olivia Rodrigo", thumbnailUrl: Temporary.artist5, largeThumbnailUrl: Temporary.artistLarge1),
-            Artist(name: "Doja Cat", thumbnailUrl: Temporary.artist2, largeThumbnailUrl: Temporary.artistLarge1)
-            ]
+        return [Artist(name: "The Weeknd", thumbnailUrl: Temporary.artist1),
+                Artist(name: "Taylor Swift", thumbnailUrl: Temporary.artist2),
+                Artist(name: "Bruno Mars", thumbnailUrl: Temporary.artist3),
+                Artist(name: "Justin Bieber", thumbnailUrl: Temporary.artist4),
+                Artist(name: "Adele", thumbnailUrl: Temporary.artist5)]
+          
     }
 }

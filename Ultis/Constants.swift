@@ -34,26 +34,28 @@ enum Temporary {
     static let song3 = "song_3"
     static let song4 = "song_4"
     static let song5 = "song_5"
-    static let song6 = "placeholder"
+    static let song6 = "song_6"
 
     
     
-    static let largeSong1 = "large_song_1"
-    static let largeSong2 = "large_song_2"
-    static let largeSong3 = "large_song_3"
-    static let largeSong4 = "large_song_4"
+    static let RCSong1 = "RC_song1"
+    static let RCSong2 = "RC_song2"
+    static let RCSong3 = "RC_song3"
+    static let RCSong4 = "RC_song4"
+    static let RCSong5 = "RC_song5"
+
     
-    static let album1 = "album_1"
-    static let album2 = "album_2"
-    static let album3 = "album_3"
-    static let album4 = "album_4"
+    static let album1 = "album1"
+    static let album2 = "album2"
+    static let album3 = "album3"
+    static let album4 = "album4"
+    static let album5 = "album5"
     
-    
-    static let artist1 = "artisrt_1"
-    static let artist2 = "artisrt_2"
-    static let artist3 = "artisrt_3"
-    static let artist4 = "artisrt_4"
-    static let artist5 = "artisrt_5"
+    static let artist1 = "Artist_1"
+    static let artist2 = "Artist_2"
+    static let artist3 = "Artist_3"
+    static let artist4 = "Artist_4"
+    static let artist5 = "Artist_5"
 
     static let artistLarge1 = "artist_thumbnail_1"
 
