@@ -15,7 +15,7 @@ class ExploreViewModel {
         case recommendedForYou = 1
         case getInspired = 2
         case popularArtists = 3
-//        case genres = 4
+        case genres = 4
         
     }
     
@@ -33,7 +33,7 @@ class ExploreViewModel {
         let recommendedForYouSection = Section(sectionType: .recommendedForYou, index: 1)
         let getInspiredSection = Section(sectionType: .getInspired, index: 2)
         let popularArtists = Section(sectionType: .popularArtists, index: 3)
-//        let genreSection = Section(sectionType: .genres, index: 4)
+        let genreSection = Section(sectionType: .genres, index: 4)
 
         
         
@@ -41,7 +41,7 @@ class ExploreViewModel {
         data.append(recommendedForYouSection)
         data.append(getInspiredSection)
         data.append(popularArtists)
-//        data.append(genreSection)
+        data.append(genreSection)
        
         return data
     }()

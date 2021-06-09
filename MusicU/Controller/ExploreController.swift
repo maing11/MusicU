@@ -53,18 +53,16 @@ class ExploreController: UIViewController {
         collectionView = UICollectionView(frame: .zero,collectionViewLayout: createFlowLayout())
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = .yellow
+        collectionView.backgroundColor = .white
         collectionView.register(ExploreRowCell.self, forCellWithReuseIdentifier: ExploreRowCell.identifier)
-////
+
         view.addSubviews( titleLabel)
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 23).isActive = true
         titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 16).isActive = true
         titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         titleLabel.heightAnchor.constraint(equalToConstant: 44).isActive = true
-//
-//        titleLabel.anchor(top: view.safeAreaLayoutGuide.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 23, paddindLeft: 16,paddingBottom: 0, paddingRight: 0, width: 0, height: 44)
-////
+
 //        (top: view.safeAreaLayoutGuide.topAnchor, left: view.leadingAnchor, bottom: nil, right: view.trailingAnchor, padding: .init(top: 23, left: 16, bottom: 16, right: 0), size: .init(width: 0, height: 44))
 
         view.addSubviews( collectionView)
@@ -105,9 +103,9 @@ extension ExploreController: UICollectionViewDataSource {
             cell.setup(cellType: .getInspired)
         case .popularArtists:
             cell.setup(cellType: .popularArtists)
-//        case .genres:
-//            cell.setup(cellType: .genres)
-//
+        case .genres:
+            cell.setup(cellType: .genres)
+
         }
         return cell
 
@@ -132,8 +130,8 @@ extension ExploreController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: width, height: 276 + padding)
         case .popularArtists:
             return CGSize(width: width, height: 180 + padding)
-//        case .genres:
-//            return CGSize(width: width, height: 110 + padding)
+        case .genres:
+            return CGSize(width: width, height: 110 + padding)
         }
 }
 }

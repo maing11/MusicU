@@ -76,3 +76,18 @@ enum UnknowImaged {
     static let placeholder  = UIImage(named: "Blue_MusicNote")
     
 }
+
+enum Asserts {
+    static let collapse = UIImage(named: "expand_arrow")!
+    static let option = UIImage(named: "more_horid")
+    static let forward = UIImage(named: "Fast_forward")
+    static let rewind  = UIImage(named: "Fast_rewind")
+    static let forward10 = UIImage(named: "forward_10")
+    static let rewind10 = UIImage(named: "rewind_10")
+    static let play = UIImage(named: "play_blue")
+    static let pause = UIImage(named: "pause_blue")
+    static let favorite = UIImage(named: "Favorite")
+    static let repeatbt = UIImage(named: "repeat")
+    static let playlist = UIImage(named: "addPlayList")
+    static let shuffle = UIImage(named: "shuffleic")
+    }

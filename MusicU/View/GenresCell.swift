@@ -7,27 +7,22 @@
 
 import UIKit
 
-class GenresCell: UICollectionViewCell{
+class GenresCell: UICollectionViewCell {
     static let identifier = "GenresCellID"
     
-    private let thumbnailImageView: UIImageView = {
-        var image = UIImageView(image: UIImage(named: "Blue_MusicNote"))
-        image.layer.cornerRadius = 15
-        image.clipsToBounds = true
-        image.contentMode = .scaleToFill
 
-        return image
-    }()
-//        private let thumbnailImageView = MUThumbnailImageView(frame: .zero)
-
-    private let titleLabel: UILabel = {
+    private let genreLabel: UILabel = {
         let label = UILabel()
-
-        label.font = UIFont(name: "MalayalamSangamMN-Bold", size: 15)
+        label.font = UIFont(name: "Verdana-Bold", size: 20)
+        
         label.textAlignment = .center
-        label.textColor = .black
+        label.textColor = .white
+        label.backgroundColor = UIColor.BlueColor
+        label.layer.cornerRadius = 12
+        label.textAlignment = .center
+        label.minimumScaleFactor = 0.9
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.85
+        label.minimumScaleFactor = 0.9
         label.lineBreakMode = .byTruncatingTail
 
         return label
@@ -45,20 +40,18 @@ class GenresCell: UICollectionViewCell{
 
 
     func configureUI() {
-        addSubview(thumbnailImageView)
-
-        thumbnailImageView.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor,width: 0, height:  self.frame.width)
         
-        addSubview(titleLabel)
-        titleLabel.anchor(top: thumbnailImageView.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor)
+        addSubview(genreLabel)
+        genreLabel.translatesAutoresizingMaskIntoConstraints = false
+        genreLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        genreLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        genreLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        genreLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
       //        titleLabel.anchor(top: thumbnailImageView.bottomAnchor, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor)
 
     }
 
-    func setup<T>(item: T, cellType: RowCellType) {
-
-        guard let song = item as? Song else {return}
-        thumbnailImageView.image = UIImage(named: song.thumbnailUrl)
-        titleLabel.text = song.title
+    func setup(genre: Genre) {
+        genreLabel.text = genre.title
     }
 }

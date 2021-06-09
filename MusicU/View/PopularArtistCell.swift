@@ -55,7 +55,7 @@ class PopularArtistCell: UICollectionViewCell {
 
         addSubview(artistLabel)
         artistLabel.translatesAutoresizingMaskIntoConstraints = false
-        artistLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor,constant: 8).isActive = true
+        artistLabel.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor,constant: 0).isActive = true
         artistLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         artistLabel.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
         artistLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
