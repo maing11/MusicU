@@ -79,15 +79,19 @@ enum UnknowImaged {
 
 enum Asserts {
     static let collapse = UIImage(named: "expand_arrow")!
-    static let option = UIImage(named: "more_horid")
-    static let forward = UIImage(named: "Fast_forward")
-    static let rewind  = UIImage(named: "Fast_rewind")
-    static let forward10 = UIImage(named: "forward_10")
-    static let rewind10 = UIImage(named: "rewind_10")
-    static let play = UIImage(named: "play_blue")
-    static let pause = UIImage(named: "pause_blue")
-    static let favorite = UIImage(named: "Favorite")
-    static let repeatbt = UIImage(named: "repeat")
-    static let playlist = UIImage(named: "addPlayList")
-    static let shuffle = UIImage(named: "shuffleic")
+    static let option = UIImage(named: "more_horid")!
+    static let forward = UIImage(named: "Fast_forward")!
+    static let rewind  = UIImage(named: "Fast_rewind")!
+    static let forward10 = UIImage(named: "forward10")!
+    static let rewind10 = UIImage(named: "rewind10")!
+    static let play = UIImage(named: "play-1")!
+    static let pause = UIImage(named: "pause_blue")!
+    static let favorite = UIImage(named: "Favourite1")!
+    static let repeatbt = UIImage(named: "repeat1")!
+    static let playlist = UIImage(named: "addPlayList")!
+    static let shuffle = UIImage(named: "shuffle1")!
+    
+    static let sliderThumb = UIImage(named: "thumbSlider")!
     }
+
+

@@ -108,40 +108,50 @@ class ExploreRowCell: UICollectionViewCell {
     
     private func configureUI() {
         addSubviews(titleLabel)
-//        titleLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right:  rightAnchor,width: 0, height: 20)
-
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        titleLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        titleLabel.rightAnchor.constraint(equalTo: rightAnchor ).isActive = true
-        titleLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
+        titleLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right:  rightAnchor,width: 0, height: 20)
 //
+//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+//        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+//        titleLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+//        titleLabel.rightAnchor.constraint(equalTo: rightAnchor ).isActive = true
+//        titleLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
+
+
         addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,constant: 18).isActive = true
-        collectionView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        collectionView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-        collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-//        NSLayoutConstraint.activate([
-//            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
-//            collectionView.rightAnchor.constraint(equalTo:rightAnchor),
-//            collectionView.topAnchor.constraint(equalTo:topAnchor,constant: 18),
-//            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor,constant: 0)
-//             ])
+//        collectionView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor,constant: 18).isActive = true
+//        collectionView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+//        collectionView.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+//        collectionView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            collectionView.leftAnchor.constraint(equalTo: leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo:rightAnchor),
+            collectionView.topAnchor.constraint(equalTo:titleLabel.bottomAnchor,constant: 18),
+            collectionView.bottomAnchor.constraint(equalTo: bottomAnchor,constant: 0)
+             ])
     }
   
     
 }
 
-//extension ExploreRowCell {
+extension ExploreRowCell {
+    
+    
+    func goToPlayerVC(with songs: [Song], index: Int) {
+        
+        let controller = PlayerViewController(songs: songs, index: index)
+        controller.modalPresentationStyle = .overCurrentContext
+        self.window?.rootViewController?.present(controller, animated: true, completion: nil)
+
+    }
+    
+    
+    
+}
+
 
  
-//    func showModal(with songs: [Song], index: Int) {
-//        let controller = MusicPlayerVC(songs: songs, index: index)
-//        controller.modalPresentationStyle = .overCurrentContext
-//        self.window?.rootViewController?.present(controller, animated: true, completion: nil)
-//    }
-//
+
 
 // UICollectionView DataSource
 
@@ -228,5 +238,20 @@ extension ExploreRowCell: UICollectionViewDataSource {
                 return CGSize(width: 0, height: 0)
             }
         }
-            
     }
+   
+
+extension ExploreRowCell: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch cellType {
+        case .recentlyPlayed:
+            goToPlayerVC(with: recentlyPlayedSongs, index: indexPath.item)
+        case .popularArtists:
+            goToPlayerVC(with: recentlyPlayedSongs, index: indexPath.item)
+           
+        default: break
+        }
+    }
+}
+    
+

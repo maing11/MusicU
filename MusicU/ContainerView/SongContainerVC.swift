@@ -18,13 +18,13 @@ class SongContainerVC: UIViewController {
     
     let albumtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Helvetica", size: 17)
+        label.font = UIFont(name: "Helvetica-Bold", size: 17)
         label.textAlignment = .center
         label.textColor = .BlueColor
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.85
         label.lineBreakMode = .byTruncatingTail
-        label.text = "Justin"
+        label.text = "Justin0"
         
         return label
     }()
@@ -39,18 +39,20 @@ class SongContainerVC: UIViewController {
             return image
         }()
     
+    
     let songTitleLabel: UILabel = {
         let label = UILabel()
        
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .center
         label.textColor = .black
-        label.font = UIFont(name: "Helvetica", size: 20)
+        label.font = UIFont(name: "Georgia-Bold", size: 20)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.9
         label.text = "HIHIHIHHI"
         return label
     }()
+    
     
     let artistLabel: UILabel = {
         let label = UILabel()
@@ -58,7 +60,7 @@ class SongContainerVC: UIViewController {
         label.lineBreakMode = .byTruncatingTail
         label.textAlignment = .center
         label.textColor = .BlueColor
-        label.font = UIFont(name: "Helvetica", size: 20)
+        label.font = UIFont(name: "ArialRoundedMTBold", size: 16)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.9
         label.text = "My baby"
@@ -68,8 +70,13 @@ class SongContainerVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemRed
         configureUI()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setUpUI(with: songs[index])
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -80,12 +87,29 @@ class SongContainerVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    convenience init(songs: [Song], index: Int) {
+
+    
 //    convenience init(songs: [Song], index: Int, controller: PlayerContainerVC) {
-//        self.init()
-//        self.index = index
+        self.init()
+        self.index = index
+        self.songs = songs
 //        self.playerContainerVC = controller
-//        self.songs = songs
-//    }
+
+    }
+    
+    
+    
+    func setUpUI(with song: Song?) {
+        guard let song = song else {return}
+        albumtitleLabel.text = song.album
+        thumbnailImageView.image = UIImage(named: song.thumbnailUrl)
+        songTitleLabel.text = song.title
+        artistLabel.text = song.artist
+        
+        
+        
+    }
     
     
     
@@ -114,12 +138,4 @@ class SongContainerVC: UIViewController {
         artistLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
 
     }
-    
-//    func setup(with song: Song?) {
-//
-//
-//
-//    }
-    
-    
 }

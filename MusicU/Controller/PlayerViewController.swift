@@ -10,10 +10,10 @@ import UIKit
 
 class PlayerViewController: UIViewController {
     
+    private let songContainer = UIView()
+    private let playContainer = UIView()
     private var songs: [Song]!
     private var index: Int!
-    private let songContainer = UIView()
-    private let PlayContainer = UIView()
     
     private let collapseButton: UIButton = {
         let bt = UIButton(frame: .zero)
@@ -42,6 +42,7 @@ class PlayerViewController: UIViewController {
         label.adjustsFontSizeToFitWidth = true
         label.lineBreakMode = .byTruncatingTail
         label.text = "NOW PLAYING FROM"
+        label.alpha = 0.5
         
         return label
         
@@ -54,10 +55,19 @@ class PlayerViewController: UIViewController {
         
     }()
     
+    convenience init(songs: [Song], index: Int) {
+        self.init()
+        self.songs = songs
+        self.index = index
+    }
+    
+
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .yellow
+        view.backgroundColor = .white
         configureUI()
         
     }
@@ -74,12 +84,16 @@ class PlayerViewController: UIViewController {
     func configureUI() {
          
         
+        
         view.addSubview(collapseButton)
         collapseButton.translatesAutoresizingMaskIntoConstraints = false
         collapseButton.leftAnchor.constraint(equalTo: view.leftAnchor,constant: 29).isActive = true
         collapseButton.topAnchor.constraint(equalTo: view.topAnchor,constant: 69).isActive = true
         collapseButton.heightAnchor.constraint(equalToConstant: 20/2).isActive = true
         collapseButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
+
+        collapseButton.action = { () in self.dismiss(animated: true) }
+
         
         view.addSubview(optionButton)
         optionButton.translatesAutoresizingMaskIntoConstraints = false
@@ -104,18 +118,18 @@ class PlayerViewController: UIViewController {
         songContainer.heightAnchor.constraint(equalTo:  songContainer.widthAnchor,multiplier: 451/317).isActive = true
         
 
-        view.addSubview(PlayContainer)
-        PlayContainer.translatesAutoresizingMaskIntoConstraints = false
-        PlayContainer.topAnchor.constraint(equalTo: songContainer.bottomAnchor, constant: 20).isActive = true
-        PlayContainer.leftAnchor.constraint(equalTo: songContainer.leftAnchor).isActive = true
-        PlayContainer.rightAnchor.constraint(equalTo: songContainer.rightAnchor).isActive = true
-        PlayContainer.heightAnchor.constraint(equalTo: PlayContainer.widthAnchor,multiplier: 197/317).isActive = true
+        view.addSubview(playContainer)
+        playContainer.translatesAutoresizingMaskIntoConstraints = false
+        playContainer.topAnchor.constraint(equalTo: songContainer.bottomAnchor, constant: 20).isActive = true
+        playContainer.leftAnchor.constraint(equalTo: songContainer.leftAnchor).isActive = true
+        playContainer.rightAnchor.constraint(equalTo: songContainer.rightAnchor).isActive = true
+        playContainer.heightAnchor.constraint(equalTo: playContainer.widthAnchor,multiplier: 197/317).isActive = true
         
-        let songContainerVC = SongContainerVC()
+        let songContainerVC = SongContainerVC(songs: songs, index: index)
         let playContainerVC = PlayerContainerVC()
         
         addContainerVC(childVC: songContainerVC, to:songContainer)
-        addContainerVC(childVC: playContainerVC, to: PlayContainer)
+        addContainerVC(childVC: playContainerVC, to: playContainer)
 //        self.addChild(songContainerVC)
 //        view.addSubview(songContainerVC.view)
 //        songContainerVC.view.frame = view.bounds
