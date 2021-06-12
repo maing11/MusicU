@@ -9,6 +9,7 @@ import UIKit
 //import Foundation
 
 
+
 class SongContainerVC: UIViewController {
     
     private var songs: [Song]!
@@ -87,14 +88,16 @@ class SongContainerVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(songs: [Song], index: Int) {
+//    convenience init(songs: [Song], index: Int) {
 
     
-//    convenience init(songs: [Song], index: Int, controller: PlayerContainerVC) {
+    convenience init(songs: [Song], index: Int, controller: PlayerContainerVC) {
+        //    convenience init(songs: [Song], index: Int, controller: PlayerContainerVC) {
+
         self.init()
         self.index = index
         self.songs = songs
-//        self.playerContainerVC = controller
+        self.playerContainerVC = controller
 
     }
     

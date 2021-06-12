@@ -5,7 +5,6 @@
 //  Created by mai ng on 6/8/21.
 //
 
-import Foundation
 import UIKit
 
 class PlayerViewController: UIViewController {
@@ -55,10 +54,18 @@ class PlayerViewController: UIViewController {
         
     }()
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
     convenience init(songs: [Song], index: Int) {
         self.init()
         self.songs = songs
         self.index = index
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
 
@@ -81,6 +88,16 @@ class PlayerViewController: UIViewController {
         print("Hello")
     }
     
+//    func configureViewController() {
+//        view.backgroundColor = .brown
+//    }
+//
+    
+     @objc func dismissButton() {
+        self.dismiss(animated: true)
+        
+    }
+    
     func configureUI() {
          
         
@@ -91,8 +108,8 @@ class PlayerViewController: UIViewController {
         collapseButton.topAnchor.constraint(equalTo: view.topAnchor,constant: 69).isActive = true
         collapseButton.heightAnchor.constraint(equalToConstant: 20/2).isActive = true
         collapseButton.widthAnchor.constraint(equalToConstant: 20).isActive = true
-
-        collapseButton.action = { () in self.dismiss(animated: true) }
+        
+        collapseButton.addTarget(self, action: #selector(dismissButton), for: .touchUpInside)
 
         
         view.addSubview(optionButton)
@@ -125,8 +142,9 @@ class PlayerViewController: UIViewController {
         playContainer.rightAnchor.constraint(equalTo: songContainer.rightAnchor).isActive = true
         playContainer.heightAnchor.constraint(equalTo: playContainer.widthAnchor,multiplier: 197/317).isActive = true
         
-        let songContainerVC = SongContainerVC(songs: songs, index: index)
-        let playContainerVC = PlayerContainerVC()
+        let playContainerVC = PlayerContainerVC(songs: songs, index: index)
+
+        let songContainerVC = SongContainerVC(songs: songs, index: index, controller: playContainerVC)
         
         addContainerVC(childVC: songContainerVC, to:songContainer)
         addContainerVC(childVC: playContainerVC, to: playContainer)

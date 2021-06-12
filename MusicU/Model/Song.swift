@@ -29,9 +29,9 @@ struct Song {
             
             Song(title: "Thank U, next", artist: "Ariana Grande", album: "Thank u, next", thumbnailUrl:Temporary.song4,file: File(name: "ThankUNext", type: FileType.mp3.rawValue)),
             
-            Song(title: "Count On Me", artist: "DIVINE", album: "Doo-Wops & Hooligans", thumbnailUrl:Temporary.song5,file: File(name: "CountOnMe", type: FileType.mp3.rawValue)),
+            Song(title: "Count On Me", artist: "DIVINE", album: "Doo-Wops & Hooligans", thumbnailUrl:Temporary.song5,file: File(name: "CountOnMe", type:  FileType.mp3.rawValue)),
             
-            Song(title: "See You Again", artist: "Charlie Puth", album: "Furious 7: Original Motion Picture Soundtrack", thumbnailUrl: Temporary.song6, file: File(name: "SeeYouAgain", type: FileType.mp3.rawValue))
+            Song(title: "See You Again", artist: "Charlie Puth", album: "Furious 7: Original Motion Picture Soundtrack", thumbnailUrl: Temporary.song6, file: File(name: "SeeYouAgain", type:  FileType.mp3.rawValue))
         ]
     }
     

@@ -8,12 +8,8 @@
 import UIKit
 import AVFoundation
 
-
-//protocol playerContainerDelegate: class {
-//    func buttonPressed()
-//}
-
-
+protocol PlayerContainerDelegate: class {
+}
 
 class PlayerContainerVC: UIViewController {
     
@@ -48,22 +44,31 @@ class PlayerContainerVC: UIViewController {
         return label
     }()
     
-    private let playButton = MUButton(assert: Asserts.play)
+    private let playButton = MUButton(assert: Asserts.pause)
+    
+//    private let playButton: UIButton = {
+//        let bt = UIButton(frame: .zero)
+//        bt.setImage(Asserts.play, for: .normal)
+//        bt.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+//        return bt
+//    }()
     
     private let forwardButton = MUButton(assert: Asserts.forward)
     private let rewindButton = MUButton(assert: Asserts.rewind)
     private let forward10Button = MUButton(assert: Asserts.forward10)
     private let rewind10Button = MUButton(assert: Asserts.rewind10)
     
-//    private let pause = MUButton(assert: Asserts.pause)
     
     private let favourite = MUButton(assert: Asserts.favorite,contentMode: .scaleAspectFit)
     private let repeatbt = MUButton(assert: Asserts.repeatbt,contentMode: .scaleAspectFit)
     private let playlist = MUButton(assert: Asserts.playlist,contentMode: .scaleAspectFit)
     private let shuffle = MUButton(assert: Asserts.shuffle,contentMode: .scaleAspectFit)
     
+    private var songs: [Song]!
+    private var index: Int!
     
-    var player: AVAudioPlayer?
+    var player: AVAudioPlayer!
+    var playerContainerDelegate: PlayerContainerDelegate?
 
     
     
@@ -76,12 +81,25 @@ class PlayerContainerVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    convenience init(songs: [Song], index: Int) {
+        self.init()
+        self.songs = songs
+        self.index = index
+    }
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUIButton()
         configureUISlider()
         configureStackView()
-
+        
+        prepareSongSesstion(song: songs[index])
+        configureSongPlayer()
+        
+        configureForwardButtonAction()
     }
     
     
@@ -94,6 +112,43 @@ class PlayerContainerVC: UIViewController {
         
     }
     
+    
+    func prepareSongSesstion(song: Song) {
+        guard let urlString = Bundle.main.path(forResource: song.file.name, ofType: song.file.type) else {return}
+
+        do {
+            player = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: urlString))
+            player.play()
+
+                        
+            do { try AVAudioSession.sharedInstance().setCategory(.playback) }
+            catch let sessionError { print("Session Error: \(sessionError)") }
+            
+        } catch let playerError { print("Song Player Error: \(playerError)") }
+    }
+
+    func configureSongPlayer() {
+        player.play()
+        playButton.action = {() in
+            if self.player.isPlaying {
+                self.playButton.placeHolderImageView.image = Asserts.play
+                self.player.pause()
+            } else {
+                self.playButton.placeHolderImageView.image = Asserts.pause
+                self.player.play()
+            }
+        }
+    }
+    
+
+//
+////        slider.maximumValue = Float(Int(player.duration))
+////        sliderMinimumLabel.text = player.currentTime.getTimeFormat()
+////        sliderMaximumLabel.text = player.duration.getTimeFormat()
+////
+////        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
+//
+
     func configureUISlider() {
 //        view.backgroundColor = .systemPink
         
@@ -142,20 +197,19 @@ class PlayerContainerVC: UIViewController {
         forwardButton.translatesAutoresizingMaskIntoConstraints = false
         forwardButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
         forwardButton.leftAnchor.constraint(equalTo: playButton.rightAnchor,constant: 25).isActive = true
-//
+
         view.addSubview(rewindButton)
         rewindButton.translatesAutoresizingMaskIntoConstraints = false
         rewindButton.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
         rewindButton.rightAnchor.constraint(equalTo: playButton.leftAnchor,constant: -25).isActive = true
-        
+
 
         view.addSubview(rewind10Button)
         rewind10Button.translatesAutoresizingMaskIntoConstraints = false
-//        rewind10Button.topAnchor.constraint(equalTo: rewindButton.topAnchor).isActive = true
         rewind10Button.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
         rewind10Button.rightAnchor.constraint(equalTo: rewindButton.leftAnchor, constant: -30).isActive = true
         rewind10Button.setDimensions(width: 25, height: 25)
-//
+
         view.addSubview(forward10Button)
         forward10Button.translatesAutoresizingMaskIntoConstraints = false
         forward10Button.centerYAnchor.constraint(equalTo: playButton.centerYAnchor).isActive = true
@@ -180,10 +234,26 @@ class PlayerContainerVC: UIViewController {
         view.addSubview(stackViewButton)
         stackViewButton.translatesAutoresizingMaskIntoConstraints = false
         stackViewButton.topAnchor.constraint(equalTo: playButton.bottomAnchor,constant: 25).isActive = true
-        stackViewButton.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        stackViewButton.rightAnchor.constraint(equalTo:view.rightAnchor).isActive = true
+//        stackViewButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        stackViewButton.leftAnchor.constraint(equalTo: rewind10Button.leftAnchor).isActive = true
+        stackViewButton.rightAnchor.constraint(equalTo:forward10Button.rightAnchor).isActive = true
         stackViewButton.heightAnchor.constraint(equalToConstant: 22).isActive = true
+    }
+    @objc func didTapButton() {
         
     }
-
+    
+    func configureForwardButtonAction() {
+        forwardButton.action = {() in
+            if self.index == self.songs.count - 1 {
+                self.index = 0
+            } else {
+                self.index = self.index + 1
+            }
+        }
+    }
+     
+    
+    
 }
+

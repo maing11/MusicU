@@ -108,13 +108,13 @@ class ExploreRowCell: UICollectionViewCell {
     
     private func configureUI() {
         addSubviews(titleLabel)
-        titleLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right:  rightAnchor,width: 0, height: 20)
-//
-//        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-//        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
-//        titleLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-//        titleLabel.rightAnchor.constraint(equalTo: rightAnchor ).isActive = true
-//        titleLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
+//        titleLabel.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right:  rightAnchor,width: 0, height: 20)
+
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        titleLabel.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        titleLabel.rightAnchor.constraint(equalTo: rightAnchor ).isActive = true
+        titleLabel.heightAnchor.constraint(equalToConstant: 22).isActive = true
 
 
         addSubview(collectionView)
@@ -144,12 +144,15 @@ extension ExploreRowCell {
         self.window?.rootViewController?.present(controller, animated: true, completion: nil)
 
     }
-    
-    
-    
+
+
+
+func navigate(viewController: UIViewController) {
+    viewController.modalPresentationStyle = .overCurrentContext
+    self.window?.rootViewController?.present(viewController, animated: true, completion: nil)
 }
 
-
+}
  
 
 
