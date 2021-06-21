@@ -72,6 +72,7 @@ class SongContainerVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configurePlayerContainerDelegate()
         
     }
     
@@ -109,9 +110,11 @@ class SongContainerVC: UIViewController {
         thumbnailImageView.image = UIImage(named: song.thumbnailUrl)
         songTitleLabel.text = song.title
         artistLabel.text = song.artist
-        
-        
-        
+    
+    }
+    
+    func configurePlayerContainerDelegate() {
+        playerContainerVC.playerContainerDelegate = self
     }
     
     
@@ -142,3 +145,12 @@ class SongContainerVC: UIViewController {
 
     }
 }
+
+extension SongContainerVC: PlayerContainerDelegate {
+    func buttonPressed(index: Int) {
+        setUpUI(with: songs[index])
+    }
+    
+    
+}
+

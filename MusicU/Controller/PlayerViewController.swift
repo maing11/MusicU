@@ -88,11 +88,7 @@ class PlayerViewController: UIViewController {
         print("Hello")
     }
     
-//    func configureViewController() {
-//        view.backgroundColor = .brown
-//    }
-//
-    
+
      @objc func dismissButton() {
         self.dismiss(animated: true)
         

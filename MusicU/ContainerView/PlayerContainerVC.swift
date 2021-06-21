@@ -8,7 +8,10 @@
 import UIKit
 import AVFoundation
 
+
+
 protocol PlayerContainerDelegate: class {
+    func buttonPressed(index: Int)
 }
 
 class PlayerContainerVC: UIViewController {
@@ -100,6 +103,7 @@ class PlayerContainerVC: UIViewController {
         configureSongPlayer()
         
         configureForwardButtonAction()
+        configureRewindButtonAction()
     }
     
     
@@ -111,6 +115,13 @@ class PlayerContainerVC: UIViewController {
         player?.play()
         
     }
+    @objc func updateSLider() {
+        if player.isPlaying {
+            sliderMinLabel.text = player.currentTime.getTimeFormat()
+            slider.value = Float(Int(player.currentTime))
+        }
+    }
+    
     
     
     func prepareSongSesstion(song: Song) {
@@ -129,6 +140,13 @@ class PlayerContainerVC: UIViewController {
 
     func configureSongPlayer() {
         player.play()
+        
+        slider.maximumValue = Float(Int(player.duration))
+        sliderMinLabel.text = player.currentTime.getTimeFormat()
+        sliderMaxLabel.text = player.duration.getTimeFormat()
+        true
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateSLider), userInfo: nil, repeats: true)
+        
         playButton.action = {() in
             if self.player.isPlaying {
                 self.playButton.placeHolderImageView.image = Asserts.play
@@ -140,17 +158,7 @@ class PlayerContainerVC: UIViewController {
         }
     }
     
-
-//
-////        slider.maximumValue = Float(Int(player.duration))
-////        sliderMinimumLabel.text = player.currentTime.getTimeFormat()
-////        sliderMaximumLabel.text = player.duration.getTimeFormat()
-////
-////        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateSlider), userInfo: nil, repeats: true)
-//
-
     func configureUISlider() {
-//        view.backgroundColor = .systemPink
         
         slider.minimumValue = 0
         slider.isContinuous = true
@@ -244,15 +252,36 @@ class PlayerContainerVC: UIViewController {
     }
     
     func configureForwardButtonAction() {
-        forwardButton.action = {() in
-            if self.index == self.songs.count - 1 {
+        forwardButton.action = { [self]() in
+            if self.index == songs.count - 1 {
                 self.index = 0
             } else {
-                self.index = self.index + 1
+                self.index = index + 1
             }
+            playerContainerDelegate?.buttonPressed(index: index)
+            playOtherSong()
+            
+        }
+    }
+    
+    func configureRewindButtonAction() {
+        rewindButton.action = {() in
+            if self.index == 0 {
+                self.index = self.songs.count - 1
+            } else {
+                self.index = self.index - 1
+            }
+            self.playerContainerDelegate?.buttonPressed(index: self.index)
+            self.playOtherSong()
         }
     }
      
+    
+    func playOtherSong() {
+        player.stop()
+        prepareSongSesstion(song: songs[index])
+        player.play()
+    }
     
     
 }
