@@ -38,6 +38,11 @@
 		CAA9E0D32681382B007FEE90 /* TopTrendingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9E0D22681382B007FEE90 /* TopTrendingViewModel.swift */; };
 		CAA9E0D526813875007FEE90 /* TopTrendingSongVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9E0D426813875007FEE90 /* TopTrendingSongVC.swift */; };
 		CAA9E0D726813990007FEE90 /* TopTrendingSong.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA9E0D626813990007FEE90 /* TopTrendingSong.swift */; };
+		CAA9E0E326827D6E007FEE90 /* ImAMess.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAA9E0E226827D6E007FEE90 /* ImAMess.mp3 */; };
+		CAA9E0E526827E1F007FEE90 /* Yummy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAA9E0E426827E1F007FEE90 /* Yummy.mp3 */; };
+		CAA9E0E726827E39007FEE90 /* 2002.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAA9E0E626827E39007FEE90 /* 2002.mp3 */; };
+		CAA9E0E926827E49007FEE90 /* Havana.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAA9E0E826827E49007FEE90 /* Havana.mp3 */; };
+		CAA9E0EB26827E5C007FEE90 /* Memories.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CAA9E0EA26827E5C007FEE90 /* Memories.mp3 */; };
 		CAB131F5266439AB0061B3D3 /* ExploreRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB131F4266439AB0061B3D3 /* ExploreRowCell.swift */; };
 		CAB131F726644F5A0061B3D3 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB131F626644F5A0061B3D3 /* Extension.swift */; };
 		CAB131F9266497BD0061B3D3 /* RecentlyPlayedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB131F8266497BD0061B3D3 /* RecentlyPlayedCell.swift */; };
@@ -111,6 +116,11 @@
 		CAA9E0D22681382B007FEE90 /* TopTrendingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTrendingViewModel.swift; sourceTree = "<group>"; };
 		CAA9E0D426813875007FEE90 /* TopTrendingSongVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTrendingSongVC.swift; sourceTree = "<group>"; };
 		CAA9E0D626813990007FEE90 /* TopTrendingSong.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTrendingSong.swift; sourceTree = "<group>"; };
+		CAA9E0E226827D6E007FEE90 /* ImAMess.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ImAMess.mp3; sourceTree = "<group>"; };
+		CAA9E0E426827E1F007FEE90 /* Yummy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Yummy.mp3; sourceTree = "<group>"; };
+		CAA9E0E626827E39007FEE90 /* 2002.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 2002.mp3; sourceTree = "<group>"; };
+		CAA9E0E826827E49007FEE90 /* Havana.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Havana.mp3; sourceTree = "<group>"; };
+		CAA9E0EA26827E5C007FEE90 /* Memories.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Memories.mp3; sourceTree = "<group>"; };
 		CAB131F4266439AB0061B3D3 /* ExploreRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreRowCell.swift; sourceTree = "<group>"; };
 		CAB131F626644F5A0061B3D3 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		CAB131F8266497BD0061B3D3 /* RecentlyPlayedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedCell.swift; sourceTree = "<group>"; };
@@ -275,6 +285,11 @@
 				CACFD1D52673FAE900BD4A60 /* ThankUNext.mp3 */,
 				CAA37B012661BBD300BF6D29 /* CountOnMe.mp3 */,
 				CAA37AFD2661AB3600BF6D29 /* SeeYouAgain.mp3 */,
+				CAA9E0E226827D6E007FEE90 /* ImAMess.mp3 */,
+				CAA9E0E426827E1F007FEE90 /* Yummy.mp3 */,
+				CAA9E0E626827E39007FEE90 /* 2002.mp3 */,
+				CAA9E0E826827E49007FEE90 /* Havana.mp3 */,
+				CAA9E0EA26827E5C007FEE90 /* Memories.mp3 */,
 			);
 			path = Playlist;
 			sourceTree = "<group>";
@@ -440,7 +455,12 @@
 				CAA37AC92661A66400BF6D29 /* LaunchScreen.storyboard in Resources */,
 				CACFD1D62673FAEA00BD4A60 /* ThankUNext.mp3 in Resources */,
 				CAA37AC62661A66400BF6D29 /* Assets.xcassets in Resources */,
+				CAA9E0E326827D6E007FEE90 /* ImAMess.mp3 in Resources */,
 				CAA37B022661BBD300BF6D29 /* CountOnMe.mp3 in Resources */,
+				CAA9E0E726827E39007FEE90 /* 2002.mp3 in Resources */,
+				CAA9E0EB26827E5C007FEE90 /* Memories.mp3 in Resources */,
+				CAA9E0E926827E49007FEE90 /* Havana.mp3 in Resources */,
+				CAA9E0E526827E1F007FEE90 /* Yummy.mp3 in Resources */,
 				CAA37AFA2661AAEE00BF6D29 /* DriversLicense.mp3 in Resources */,
 				CAA37B042661BBDA00BF6D29 /* SaySo.mp3 in Resources */,
 				CAA37AC42661A66300BF6D29 /* Main.storyboard in Resources */,

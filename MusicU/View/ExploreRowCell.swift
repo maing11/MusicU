@@ -249,6 +249,10 @@ extension ExploreRowCell: UICollectionViewDelegate {
         switch cellType {
         case .recentlyPlayed:
             goToPlayerVC(with: recentlyPlayedSongs, index: indexPath.item)
+            
+        case .recommendedForYou:
+            goToPlayerVC(with: recommendedForYouSongs, index: indexPath.item)
+            
         case .popularArtists:
             goToPlayerVC(with: recentlyPlayedSongs, index: indexPath.item)
            

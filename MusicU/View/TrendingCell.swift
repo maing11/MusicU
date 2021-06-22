@@ -77,8 +77,8 @@ class TrendingCell: UICollectionViewCell {
         
         addSubview(thumbnailImageView)
         thumbnailImageView.translatesAutoresizingMaskIntoConstraints = false
-        thumbnailImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        thumbnailImageView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+        thumbnailImageView.topAnchor.constraint(equalTo: topAnchor,constant: 12).isActive = true
+        thumbnailImageView.leftAnchor.constraint(equalTo: leftAnchor,constant: 16).isActive = true
         thumbnailImageView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         thumbnailImageView.widthAnchor.constraint(equalToConstant: self.frame.height).isActive = true
         
@@ -88,7 +88,7 @@ class TrendingCell: UICollectionViewCell {
 
         addSubview(trendingContainer)
         trendingContainer.translatesAutoresizingMaskIntoConstraints = false
-        trendingContainer.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        trendingContainer.topAnchor.constraint(equalTo: thumbnailImageView.topAnchor).isActive = true
         trendingContainer.leftAnchor.constraint(equalTo: thumbnailImageView.rightAnchor,constant: 20).isActive = true
         trendingContainer.heightAnchor.constraint(equalToConstant: 24).isActive = true
         trendingContainer.widthAnchor.constraint(equalToConstant: 43).isActive = true

@@ -76,7 +76,7 @@ class TrendingController: UIViewController {
         view.addSubview(trendingSongContainer)
         trendingSongContainer.translatesAutoresizingMaskIntoConstraints = false
         trendingSongContainer.topAnchor.constraint(equalTo: topTrendingTitleLabel.bottomAnchor,constant: 20).isActive = true
-        trendingSongContainer.leftAnchor.constraint(equalTo: topTrendingTitleLabel.leftAnchor).isActive = true
+        trendingSongContainer.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         trendingSongContainer.rightAnchor.constraint(equalTo: topTrendingTitleLabel.rightAnchor).isActive = true
         trendingSongContainer.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         

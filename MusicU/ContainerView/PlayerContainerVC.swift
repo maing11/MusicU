@@ -103,11 +103,11 @@ class PlayerContainerVC: UIViewController {
     
     
     @objc func sliderChanged() {
-        sliderMinLabel.text = Double(slider.value).getTimeFormat()
+//        sliderMinLabel.text = Double(slider.value).getTimeFormat()
         
-        player?.stop()
-        player?.currentTime = TimeInterval(slider.value)
-        player?.play()
+//        player?.stop()
+//        player?.currentTime = TimeInterval(slider.value)
+//        player?.play()
         
     }
     @objc func updateSLider() {
