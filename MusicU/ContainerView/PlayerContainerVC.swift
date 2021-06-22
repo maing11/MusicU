@@ -8,11 +8,11 @@
 import UIKit
 import AVFoundation
 
-
-
 protocol PlayerContainerDelegate: class {
     func buttonPressed(index: Int)
 }
+
+
 
 class PlayerContainerVC: UIViewController {
     
@@ -49,12 +49,6 @@ class PlayerContainerVC: UIViewController {
     
     private let playButton = MUButton(assert: Asserts.pause)
     
-//    private let playButton: UIButton = {
-//        let bt = UIButton(frame: .zero)
-//        bt.setImage(Asserts.play, for: .normal)
-//        bt.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
-//        return bt
-//    }()
     
     private let forwardButton = MUButton(assert: Asserts.forward)
     private let rewindButton = MUButton(assert: Asserts.rewind)
@@ -91,8 +85,6 @@ class PlayerContainerVC: UIViewController {
     }
     
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUIButton()
@@ -104,6 +96,9 @@ class PlayerContainerVC: UIViewController {
         
         configureForwardButtonAction()
         configureRewindButtonAction()
+        
+        configureForward10()
+        configureRewind10()
     }
     
     
@@ -284,5 +279,42 @@ class PlayerContainerVC: UIViewController {
     }
     
     
+    func configureForward10() {
+        forward10Button.action = { () in
+            self.player.stop()
+            var time = self.player.currentTime
+            time = time + 10
+            
+            if time > self.player.duration {
+                self.player.currentTime = self.player.duration
+                self.slider.value = Float(self.player.duration)
+                self.player.stop()
+            } else {
+                self.player.currentTime = time
+            }
+            self.player.play()
+            self.slider.value = Float(Int(self.player.currentTime))
+            self.sliderMinLabel.text = self.player.currentTime.getTimeFormat()
+            
+        }
+    }
+    
+    
+    func configureRewind10() {
+        rewind10Button.action = { () in
+            self.player.stop()
+            var time = self.player.currentTime
+            time = time - 10
+            
+            if time < 0 {
+                self.player.currentTime  = 0
+            } else {
+                self.player.currentTime = time
+            }
+            self.player.play()
+            self.slider.value = Float(Int(self.player.currentTime))
+            self.sliderMinLabel.text = self.player.currentTime.getTimeFormat()
+        }
+    }
 }
 

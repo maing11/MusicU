@@ -6,9 +6,6 @@
 //
 
 import UIKit
-//import Foundation
-
-
 
 class SongContainerVC: UIViewController {
     
@@ -93,8 +90,6 @@ class SongContainerVC: UIViewController {
 
     
     convenience init(songs: [Song], index: Int, controller: PlayerContainerVC) {
-        //    convenience init(songs: [Song], index: Int, controller: PlayerContainerVC) {
-
         self.init()
         self.index = index
         self.songs = songs
@@ -116,7 +111,6 @@ class SongContainerVC: UIViewController {
     func configurePlayerContainerDelegate() {
         playerContainerVC.playerContainerDelegate = self
     }
-    
     
     
     func configureUI() {
